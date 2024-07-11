@@ -9,6 +9,7 @@ from services.text_processor import TextProcessor
 from utils.clipboard_utils import ClipboardUtils
 
 load_dotenv()
+
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
@@ -36,7 +37,7 @@ class TextProcessorApp:
         action, translated = self.text_processor.translate(text)
         if translated:
             self.clipboard_utils.set_clipboard_text(translated)
-            self.clipboard_utils.simulate_paste()
+            # self.clipboard_utils.simulate_paste() -- i dont wanna paste after translation
             self.feedback_window.update_content(action, translated)
 
     def check_text(self, keystring):

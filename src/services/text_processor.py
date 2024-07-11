@@ -1,17 +1,16 @@
 import os
 import deepl
-# import langdetect
 import langid
-import language_tool_python
 import webbrowser
 import logging
+from services.openai import OpenAIService
 
 logger = logging.getLogger(__name__)
 
 class TextProcessor:
     def __init__(self):
         self.translator = deepl.Translator(os.getenv('DEEPL_API_KEY'))
-        self.language_tool = language_tool_python.LanguageTool('en-US')
+        self.openai_service = OpenAIService(os.getenv("OPENAI_API_KEY"))
         
     def translate(self, text):
         try:
@@ -35,12 +34,11 @@ class TextProcessor:
             return "Translation Error", str(e)
 
     def check_grammar(self, text):
-        matches = self.language_tool.check(text)
-        if matches:
-            corrected = language_tool_python.utils.correct(text, matches)
+        corrected = self.openai_service.check_grammar(text)
+        if corrected:
             return "Grammar Check", corrected
         else:
-            return "Grammar Check", "No grammar or spelling issues found."
+            return "Grammar Check Error", "Failed to check grammar. Please try again."
 
     def search(self, text):
         search_url = f"https://www.google.com/search?q={text}"

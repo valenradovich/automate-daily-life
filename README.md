@@ -4,7 +4,7 @@
 1. press `ctrl + alt + q` to translate the selected text. (english to spanish or vice versa)
 2. press `ctrl + alt + g` to check the selected text grammar.
 3. press `ctrl + alt + s` to search the selected text in google.
-4. press `ctrl + alt + d` to look up the selected text in the dictionary.
+4. press `ctrl + alt + c` to look up the selected text in the dictionary.
 5. press `ctrl + alt + a` to look up the selected text in the thesaurus. (synonyms and antonyms)
 
 ## how to install it:

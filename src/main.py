@@ -26,7 +26,7 @@ class TextProcessorApp:
         Keybinder.bind("<Ctrl><Alt>Q", self.translate_text)
         Keybinder.bind("<Ctrl><Alt>G", self.check_text)
         Keybinder.bind("<Ctrl><Alt>S", self.search_text)
-        Keybinder.bind("<Ctrl><Alt>D", self.dictionary_lookup)
+        Keybinder.bind("<Ctrl><Alt>C", self.dictionary_lookup)
         Keybinder.bind("<Ctrl><Alt>A", self.thesaurus_lookup)
 
         Gtk.main()

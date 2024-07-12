@@ -26,6 +26,8 @@ class TextProcessorApp:
         Keybinder.bind("<Ctrl><Alt>Q", self.translate_text)
         Keybinder.bind("<Ctrl><Alt>G", self.check_text)
         Keybinder.bind("<Ctrl><Alt>S", self.search_text)
+        Keybinder.bind("<Ctrl><Alt>D", self.dictionary_lookup)
+        Keybinder.bind("<Ctrl><Alt>A", self.thesaurus_lookup)
 
         Gtk.main()
 
@@ -58,6 +60,23 @@ class TextProcessorApp:
 
         action, search_url = self.text_processor.search(text)
         self.feedback_window.update_content(action, f"Searching for: {text}")
+        
+    def dictionary_lookup(self, keystring):
+        word = self.clipboard_utils.get_selected_text()
+        if not word:
+            return
+
+        action, definition = self.text_processor.dictionary_lookup(word.strip())
+        self.feedback_window.update_content(action, definition)
+        
+    def thesaurus_lookup(self, keystring):
+        word = self.clipboard_utils.get_selected_text()
+        if not word:
+            return
+
+        action, result = self.text_processor.thesaurus_lookup(word.strip())
+        self.feedback_window.update_content(action, result)
+
 
 if __name__ == "__main__":
     app = TextProcessorApp()

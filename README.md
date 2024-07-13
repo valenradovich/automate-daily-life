@@ -1,5 +1,9 @@
 # automating my daily life
 
+## demo
+[![video demo](https://img.youtube.com/vi/55-AAFENbVA/0.jpg)](https://www.youtube.com/watch?v=55-AAFENbVA)
+
+
 ## how to use it:
 1. press `ctrl + alt + q` to translate the selected text. (english to spanish or vice versa)
 2. press `ctrl + alt + g` to check the selected text grammar.
@@ -20,7 +24,7 @@ sudo apt-get upgrade
 sudo apt install gnome-shell-extension-manager
 ```
 3. then go to this link: https://extensions.gnome.org/extension/5410/grand-theft-focus/ (gnome extensions website) and just turn it on.
-![alt text](images/image.png)
+![gnome extension image](images/image.png)
 
 4. install the required python packages:
 ```bash

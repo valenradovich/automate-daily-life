@@ -1,6 +1,8 @@
 # automating my daily life
 
 ## demo
+just click the image below to watch it
+
 [![video demo](https://img.youtube.com/vi/55-AAFENbVA/0.jpg)](https://www.youtube.com/watch?v=55-AAFENbVA)
 
 

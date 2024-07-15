@@ -1,7 +1,7 @@
 import gi
 gi.require_version('Gtk', '3.0')
 gi.require_version('Keybinder', '3.0')
-from gi.repository import Gtk, Keybinder
+from gi.repository import Gtk, Keybinder, GLib
 from dotenv import load_dotenv
 import logging
 from ui.window import PopupWindow
@@ -19,6 +19,14 @@ class TextProcessorApp:
         self.feedback_window = PopupWindow()
         self.text_processor = TextProcessor()
         self.clipboard_utils = ClipboardUtils()
+        
+        # status icon
+        self.status_icon = Gtk.StatusIcon()
+        self.status_icon.set_from_icon_name("accessories-text-editor")
+        self.status_icon.set_visible(True)
+        self.status_icon.connect("activate", self.on_tray_icon_activate)
+        self.status_icon.connect("popup-menu", self.on_tray_icon_popup_menu)
+
 
     def run(self):
         logger.info("Running Text Processor App")
@@ -30,6 +38,21 @@ class TextProcessorApp:
         Keybinder.bind("<Ctrl><Alt>A", self.thesaurus_lookup)
 
         Gtk.main()
+    
+    def on_tray_icon_activate(self, widget):
+        print("Tray icon clicked")
+        # You can add any action here, like showing/hiding a window
+
+    def on_tray_icon_popup_menu(self, icon, button, time):
+        menu = Gtk.Menu()
+        item_quit = Gtk.MenuItem(label="Quit")
+        item_quit.connect("activate", self.quit)
+        menu.append(item_quit)
+        menu.show_all()
+        menu.popup(None, None, None, self.status_icon, button, time)
+
+    def quit(self, widget):
+        Gtk.main_quit()
 
     def translate_text(self, keystring):
         text = self.clipboard_utils.get_selected_text()

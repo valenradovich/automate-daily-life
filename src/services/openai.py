@@ -12,11 +12,11 @@ class OpenAIService:
 
     def check_grammar(self, text):
         try:
-            response = self.client.chat.completions.create(model="gpt-3.5-turbo",
+            response = self.client.chat.completions.create(model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": """You're a professional writer. 
                                                  Your task is to correct typos and grammar, keeping the original style of the text. 
-                                                 Do not uppercase words that are not written in uppercase in the original text.
+                                                 Do not capitalize letters that were not capitalized and do not include a period if it was not in the original text.
                                                                                                   
                                                  Remember to just output the corrected text without any additional words."""},
                 {"role": "user", "content": f"Correct the following text: {text}"}

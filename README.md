@@ -45,3 +45,7 @@ echo "MERRIAM_WEBSTER_API_KEY='your_api_key'" >> .env
 ```bash
 python3 main.py
 ```
+6.1 if you want to run it in the background at startup, i did this from an .sh file:
+![run at startup](images/image-1.png)
+
+

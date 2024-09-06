@@ -34,14 +34,14 @@ class TextProcessorApp:
         Keybinder.bind("<Ctrl><Alt>Q", self.translate_text)
         Keybinder.bind("<Ctrl><Alt>G", self.check_text)
         Keybinder.bind("<Ctrl><Alt>S", self.search_text)
-        Keybinder.bind("<Ctrl><Alt>C", self.dictionary_lookup)
-        Keybinder.bind("<Ctrl><Alt>A", self.thesaurus_lookup)
+        Keybinder.bind("<Ctrl><Alt>A", self.openai_general)#self.dictionary_lookup)
+        Keybinder.bind("<Ctrl><Alt>C", self.thesaurus_lookup)
 
         Gtk.main()
     
     def on_tray_icon_activate(self, widget):
         print("Tray icon clicked")
-        # You can add any action here, like showing/hiding a window
+        # you can add any action here, like showing/hiding a window
 
     def on_tray_icon_popup_menu(self, icon, button, time):
         menu = Gtk.Menu()
@@ -76,6 +76,18 @@ class TextProcessorApp:
             self.clipboard_utils.simulate_paste()
         self.feedback_window.update_content(action, corrected)
 
+    def openai_general(self, keystring):
+        text = self.clipboard_utils.get_selected_text()
+        if not text:
+            return
+
+        action, response = self.text_processor.general_query(text)
+        if response:
+            self.clipboard_utils.set_clipboard_text(response)
+            self.clipboard_utils.simulate_paste()
+        self.feedback_window.update_content(action, response)
+        
+    
     def search_text(self, keystring):
         text = self.clipboard_utils.get_selected_text()
         if not text:

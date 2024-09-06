@@ -40,6 +40,13 @@ class TextProcessor:
             return "Grammar Check", corrected
         else:
             return "Grammar Check Error", "Failed to check grammar. Please try again."
+        
+    def general_query(self, prompt):
+        response = self.openai_service.general_query(prompt)
+        if response:
+            return "Response done", response
+        else:
+            return "OpenAI Error", "Failed to get response. Please try again."
 
     def search(self, text):
         search_url = f"https://www.google.com/search?q={text}"
